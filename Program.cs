@@ -3,6 +3,17 @@ using practicandoParaTPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configura el puerto según la variable de entorno "PORT" (usada en Render) o usa 5000 por defecto en desarrollo
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrEmpty(port))
+{
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        options.ListenAnyIP(int.Parse(port));
+    });
+}
+
+
 // Add services to the container.
 var connectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")
     ?? builder.Configuration.GetConnectionString("DefaultConnection");
