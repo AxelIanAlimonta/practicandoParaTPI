@@ -1,0 +1,6 @@
+@practicandoParaTPI_HostAddress = http://localhost:5243
+
+GET {{practicandoParaTPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
